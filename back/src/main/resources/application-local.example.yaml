@@ -13,3 +13,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
     database-platform: org.hibernate.dialect.MySQLDialect
+
+#config jwt
+jwt:
+  secret: mySecretKey
+  expiration: 3600000
