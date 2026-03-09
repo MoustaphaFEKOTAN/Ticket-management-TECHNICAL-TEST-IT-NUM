@@ -36,14 +36,14 @@ cp src/main/resources/application-local.example.yml \
 
 Ouvrez `application-local.yml` et configurer la base de données(MySQL) :
 
-#### Générer la clé JWT
+#### Générer la clé JWT DEPUIS VOTRE TERMINAL
 ```bash
 openssl rand -hex 32
 ```
 
 > Si cette commande ne fonctionne pas vous pouvez utiliser une autre alternative pour générer le 'secret'
 
-Ajoutez la clé générée dans `application-local.yml` :
+Copiez la clé générée et ajoutez la clé générée dans `application-local.yml` :
 ```yaml
 jwt:
   secret: _CLE_GENEREE
