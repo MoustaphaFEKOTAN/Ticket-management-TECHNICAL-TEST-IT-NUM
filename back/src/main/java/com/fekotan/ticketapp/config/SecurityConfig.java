@@ -18,32 +18,32 @@ import com.fekotan.ticketapp.security.AuthTokenFilter;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final AuthEntryPointJwt unauthorizedHandler;
-    private final AuthTokenFilter authTokenFilter;
+        private final AuthEntryPointJwt unauthorizedHandler;
+        private final AuthTokenFilter authTokenFilter;
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+        @Bean
+        public AuthenticationManager authenticationManager(
+                        AuthenticationConfiguration authenticationConfiguration) throws Exception {
+                return authenticationConfiguration.getAuthenticationManager();
+        }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
-                .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**",
-                                "/error")
-                        .permitAll()// si j'ai fait ca, c'est pour que les endpoints
-                                    // d'authentification soient accessibles sans
-                                    // authentification
-                        .anyRequest().authenticated());
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+                http
+                                .csrf(csrf -> csrf.disable())
+                                .cors(cors -> cors.disable())
+                                .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/api/auth/**",
+                                                                "/error")
+                                                .permitAll()// si j'ai fait ca, c'est pour que les endpoints
+                                                            // d'authentification soient accessibles sans
+                                                            // authentification
+                                                .anyRequest().authenticated());
 
-        http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+                http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
+                return http.build();
+        }
 }
