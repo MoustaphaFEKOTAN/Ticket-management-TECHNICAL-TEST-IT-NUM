@@ -7,7 +7,7 @@ Application de gestion de tickets de support avec un backend Spring Boot et un f
 - Java 17+
 - Maven
 - MySQL
-- Node.js & npm
+- Node.js & npm(v22.13.1)
 - Spring Boot 4.0.3
 
 ## Installation
