@@ -20,7 +20,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()//si j'ai fait ca, c'est pour que les endpoints d'authentification soient accessibles sans authentification
+                        .requestMatchers("/api/auth/**").permitAll()// si j'ai fait ca, c'est pour que les endpoints
+                                                                    // d'authentification soient accessibles sans
+                                                                    // authentification
                         .anyRequest().authenticated());
 
         return http.build();

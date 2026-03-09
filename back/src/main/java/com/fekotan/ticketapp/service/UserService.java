@@ -20,7 +20,6 @@ public class UserService {
             throw new RuntimeException("Passwords do not match");
         }
 
-
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
