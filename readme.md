@@ -1,6 +1,6 @@
 # Ticket Management App
 
-Application de gestion de tickets de support avec un backend Spring Boot et un frontend Nuxt.js.
+Application de gestion de tickets de support avec un backend Spring Boot et un frontend Nuxt.js(TEST TECHNIQUE IT-NUM)
 
 ## Prérequis
 
@@ -8,17 +8,21 @@ Application de gestion de tickets de support avec un backend Spring Boot et un f
 - Maven
 - MySQL
 - Node.js & npm
+- Spring Boot 4.0.3
 
 ## Installation
 
 ### 1. Récupérer le projet
 ```bash
-git clone https://github.com/ton-repo/projet.gi
+git clone https://github.com/MoustaphaFEKOTAN/Ticket-management-TECHNICAL-TEST-IT-NUM
 ```
 
-### 2. Backend
+#### Dézipper le fichier et ouvrez le projet dans votre éditeur de code 
+
+### 1.1 Accédez au Backend du projet
 ```bash
 cd back
+
 ```
 
 #### Configurer les variables locales
@@ -26,6 +30,9 @@ cd back
 cp src/main/resources/application-local.example.yml \
    src/main/resources/application-local.yml
 ```
+
+
+#### Créer la base de données MySQL depuis PhpMyAdmin
 
 Ouvrez `application-local.yml` et configurer la base de données(MySQL) :
 
@@ -36,14 +43,12 @@ openssl rand -hex 32
 
 > Si cette commande ne fonctionne pas vous pouvez utiliser une autre alternative pour générer le 'secret'
 
-Ajoute la clé générée dans `application-local.yml` :
+Ajoutez la clé générée dans `application-local.yml` :
 ```yaml
 jwt:
   secret: _CLE_GENEREE
   expiration: 86400000
 ```
-
-#### Créer la base de données MySQL depuis PhpMyAdmin
 
 #### Démarrer le backend
 ```bash
@@ -54,25 +59,21 @@ jwt:
 
 ---
 
-### 3. Frontend
+### 2. Accédez au Frontend du projet
 ```bash
-cd ../front
+cd /front
 npm install
+```
+
+### 2.1 Une fois toutes dépendances installées, démarrez le serveur
+```bash
 npm run dev -- -o
 ```
 
----
-
-## Structure de la configuration
-
-| Fichier | Commité | Rôle |
-|---|---|---|
-| `application.yml` | ✅ oui | Config de base |
-| `application-local.example.yml` | ✅ oui | Modèle à copier |
-| `application-local.yml` | ❌ non | Tes vraies valeurs locales |
-
----
-
-## Ce qui pourrait être amélioré
+## Ce qui pourrait être amélioré coté backend
 
 - Gestion globale des exceptions avec `@RestControllerAdvice`
+- Pagination sur la liste des tickets
+- Tests unitaires et fonctionnels
+- Ajout d'un role 'Agent' pour permettre l'assignation d'un ticket à un agent de la plateforme
+- Documentation complète de l'Api
