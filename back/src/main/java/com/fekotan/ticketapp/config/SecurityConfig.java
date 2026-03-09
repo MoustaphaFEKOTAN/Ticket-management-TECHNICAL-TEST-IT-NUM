@@ -8,14 +8,18 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import com.fekotan.ticketapp.security.AuthEntryPointJwt;
+import com.fekotan.ticketapp.security.AuthTokenFilter;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final AuthEntryPointJwt unauthorizedHandler;
+    private final AuthTokenFilter authTokenFilter;
 
     @Bean
     public AuthenticationManager authenticationManager(
@@ -27,19 +31,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()// si j'ai fait ca, c'est pour que les endpoints
-                                                                    // d'authentification soient accessibles sans
-                                                                    // authentification
+                        .requestMatchers("/api/auth/**",
+                                "/error")
+                        .permitAll()// si j'ai fait ca, c'est pour que les endpoints
+                                    // d'authentification soient accessibles sans
+                                    // authentification
                         .anyRequest().authenticated());
 
+        http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

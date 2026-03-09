@@ -1,5 +1,7 @@
 package com.fekotan.ticketapp.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.fekotan.ticketapp.entity.Ticket;
@@ -8,5 +10,5 @@ import com.fekotan.ticketapp.entity.Ticket;
 // CRUD refers Create, Read, Update, Delete
 
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
-
+    List<Ticket> findByUserId(Long userId);
 }
