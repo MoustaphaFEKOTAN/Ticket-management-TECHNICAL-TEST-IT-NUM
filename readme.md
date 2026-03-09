@@ -46,7 +46,7 @@ openssl rand -hex 32
 Copiez la clé générée et ajoutez la clé générée dans `application-local.yml` :
 ```yaml
 jwt:
-  secret: _CLE_GENEREE
+  secret: CLE_GENEREE
   expiration: 86400000
 ```
 
