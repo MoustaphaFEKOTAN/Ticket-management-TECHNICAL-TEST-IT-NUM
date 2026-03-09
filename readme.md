@@ -61,7 +61,7 @@ jwt:
 
 ### 2. Accédez au Frontend du projet
 ```bash
-cd /front
+cd ../front
 npm install
 ```
 
