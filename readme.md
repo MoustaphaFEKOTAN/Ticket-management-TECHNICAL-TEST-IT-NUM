@@ -1,4 +1,4 @@
-# Ticket Management App
+# Ticket Management App - MOUSTAPHA FEKOTAN
 
 Application de gestion de tickets de support avec un backend Spring Boot et un frontend Nuxt.js(TEST TECHNIQUE IT-NUM)
 
