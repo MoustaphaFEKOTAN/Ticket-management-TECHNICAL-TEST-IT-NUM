@@ -38,7 +38,7 @@ public class Ticket {
     @Getter
     @Setter
     @Enumerated(EnumType.STRING)
-    private Status status = Status.OPEN;
+    private Status status = Status.OUVERT;
 
     @Getter
     private LocalDateTime createdAt = LocalDateTime.now();

@@ -11,6 +11,11 @@ export const useTicketService = () => {
   });
 
   const handleResponse = (res: Response) => {
+    if (res.status === 401) {
+      auth.logout();
+      navigateTo("/login");
+      throw new Error("Session expirée");
+    }
     if (!res.ok) throw new Error("Erreur serveur");
     return res.json();
   };

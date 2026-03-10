@@ -2,7 +2,7 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2>Mes tickets</h2>
-            <a href="" class="btn btn-primary">Nouveau ticket</a>
+            <a href="/tickets/create" class="btn btn-primary">Nouveau ticket</a>
         </div>
 
         <p v-if="loading">Chargement...</p>
