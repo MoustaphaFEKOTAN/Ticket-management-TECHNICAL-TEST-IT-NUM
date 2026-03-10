@@ -116,4 +116,7 @@ npm run dev -- -o
 
 ## Ce qui pourrait être amélioré coté frontend
 
--
+- Améliorer le design des différentes vues crées
+- Utilisation de modal pour afficher les réponses pour améliorer l'UX
+- Action de confirmation lors de la suppression d'un ticket
+- Tableau de bord personnalisé pour l'admin
