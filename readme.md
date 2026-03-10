@@ -59,6 +59,8 @@ jwt:
 
 > Spring Boot crée automatiquement les tables au premier démarrage.
 
+>Par défaut, l'url du back sera: http://localhost:8080
+
 ---
 
 ### 3. Accédez au Frontend du projet(Ouvrez une nouvelle instance de votre terminal)
@@ -72,8 +74,13 @@ npm install
 ```bash
 cp .env.example \ .env 
 ```
-- Vérifier dans le .env que  l'url du backend en cours d'execution correspond à ce qui est renseigné dans le fichier:
-  
+
+- Vérifier dans le .env, que l'url du backend renseigné correspond à l'url sur lequel le back s'execute actuellement, si ce n'est pas le cas vous pouvez modfier:
+
+```bash
+NUXT_PUBLIC_API_BASE=http://localhost:8080
+```
+
 - Si tout est bon, vous pouvez lancer le projet:
 
 #### 3.2 Démarrez le serveur
@@ -81,6 +88,7 @@ cp .env.example \ .env
 npm run dev -- -o
 ```
 
+>Par défaut, l'url du front sera: http://localhost:3000
 
 
 
