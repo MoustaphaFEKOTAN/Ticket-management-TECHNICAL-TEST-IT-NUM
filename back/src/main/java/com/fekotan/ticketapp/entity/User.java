@@ -16,6 +16,8 @@ import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity // This tells Hibernate to make a table out of this class
 @NoArgsConstructor
 public class User {
@@ -50,6 +52,7 @@ public class User {
 
     @Getter
     @Setter
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Ticket> tickets;
 }
