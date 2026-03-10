@@ -15,7 +15,7 @@ Application de gestion de tickets de support avec un backend Spring Boot et un f
 ### 1. Récupérer le projet
 
 ```bash
-git clone https://github.com/MoustaphaFEKOTAN/Ticket-management-TECHNICAL-TEST-IT-NUM
+git clone https://github.com/MoustaphaFEKOTAN/Ticket-management-TECHNICAL-TEST-IT-NUM.git
 ```
 
 #### Dézipper le fichier et ouvrez le projet dans votre éditeur de code
