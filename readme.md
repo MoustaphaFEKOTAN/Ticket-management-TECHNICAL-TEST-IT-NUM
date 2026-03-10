@@ -13,30 +13,41 @@ Application de gestion de tickets de support avec un backend Spring Boot et un f
 ## Installation
 
 ### 1. Récupérer le projet
+
 ```bash
 git clone https://github.com/MoustaphaFEKOTAN/Ticket-management-TECHNICAL-TEST-IT-NUM
 ```
 
-#### Dézipper le fichier et ouvrez le projet dans votre éditeur de code 
+#### Dézipper le fichier et ouvrez le projet dans votre éditeur de code
 
 ### 2. Accédez au Backend du projet
+
 ```bash
 cd back
 
 ```
 
 #### 2.1 Configurer les variables locales
+
 ```bash
 cp src/main/resources/application-local.example.yml \
    src/main/resources/application-local.yml
 ```
 
-
-#### 2.2 Créer la base de données MySQL depuis PhpMyAdmin
+#### 2.2 Démarrer Mysql et créer la base de données depuis l'interface PhpMyAdmin
 
 Ouvrez `application-local.yml` et configurer la base de données(MySQL) :
 
+```yaml
+datasource:
+  url: jdbc:mysql://localhost:3306/Database_name
+  username: Votre_Username
+  password: Votre_Password
+  driver-class-name: com.mysql.cj.jdbc.Driver
+```
+
 #### 2.3 Générer la clé JWT DEPUIS VOTRE TERMINAL
+
 ```bash
 openssl rand -hex 32
 ```
@@ -44,54 +55,53 @@ openssl rand -hex 32
 > Si cette commande ne fonctionne pas vous pouvez utiliser une autre alternative pour générer le 'secret'
 
 Copiez la clé générée et ajoutez la clé générée dans `application-local.yml` :
+
 ```yaml
 jwt:
   secret: CLE_GENEREE
   expiration: 86400000
 ```
-#### 2.4 Ajoutez l'url du front au niveau de:
 
+#### 2.4 Démarrer le backend
 
-#### 2.5 Démarrer le backend
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 > Spring Boot crée automatiquement les tables au premier démarrage.
 
->Par défaut, l'url du back sera: http://localhost:8080
+> Par défaut, l'url du back sera: http://localhost:8080
 
 ---
 
 ### 3. Accédez au Frontend du projet(Ouvrez une nouvelle instance de votre terminal)
+
 ```bash
 cd ../front
 npm install
 ```
 
-### 3.1 Une fois toutes les dépendances installées, Configurer les variables locales 
+### 3.1 Une fois toutes les dépendances installées, Configurer les variables locales
 
 ```bash
-cp .env.example \ .env 
+cp .env.example \ .env
 ```
 
 - Vérifier dans le .env, que l'url du backend renseigné correspond à l'url sur lequel le back s'execute actuellement, si ce n'est pas le cas vous pouvez modfier:
 
 ```bash
-NUXT_PUBLIC_API_BASE=http://localhost:8080
+NUXT_PUBLIC_API_BASE=BACKEND_URL
 ```
 
 - Si tout est bon, vous pouvez lancer le projet:
 
 #### 3.2 Démarrez le serveur
+
 ```bash
 npm run dev -- -o
 ```
 
->Par défaut, l'url du front sera: http://localhost:3000
-
-
-
+> Par défaut, l'url du front sera: http://localhost:3000
 
 ## Ce qui pourrait être amélioré coté backend
 
@@ -106,4 +116,4 @@ npm run dev -- -o
 
 ## Ce qui pourrait être amélioré coté frontend
 
-- 
+-
