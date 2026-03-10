@@ -72,14 +72,18 @@ npm install
 ```bash
 cp .env.example \ .env 
 ```
-- Rajouter l'url du backend en cours d'execution dans le .env à ce niveau:
+- Vérifier dans le .env que  l'url du backend en cours d'execution correspond à ce qui est renseigné dans le fichier:
   
-
+- Si tout est bon, vous pouvez lancer le projet:
 
 #### 3.2 Démarrez le serveur
 ```bash
 npm run dev -- -o
 ```
+
+
+
+
 
 ## Ce qui pourrait être amélioré coté backend
 
