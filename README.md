@@ -8,7 +8,14 @@ Application de gestion de tickets de support avec un backend Spring Boot et un f
 - Maven
 - MySQL
 - Node.js & npm(v22.13.1)
-- Spring Boot 4.0.3
+
+## Fonctionnalités
+
+- Authentification JWT
+- Création de tickets
+- Modification de tickets
+- Suppression de tickets
+- Consultation de ses tickets
 
 ## Installation
 
@@ -40,14 +47,15 @@ cp src/main/resources/application-local.example.yaml src/main/resources/applicat
 Ouvrez `application-local.yaml` et configurer la base de données(MySQL) :
 
 ```yaml
-datasource:
+spring:
+  datasource:
   url: jdbc:mysql://localhost:3306/Database_name
   username: Votre_Username
   password: Votre_Password
   driver-class-name: com.mysql.cj.jdbc.Driver
 ```
 
-#### 2.3 Générer la clé JWT DEPUIS VOTRE TERMINAL
+#### 2.3 Générer une clé JWT DEPUIS VOTRE TERMINAL
 
 ```bash
 openssl rand -hex 32
