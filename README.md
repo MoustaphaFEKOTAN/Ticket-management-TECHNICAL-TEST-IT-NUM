@@ -15,12 +15,14 @@ Application de gestion de tickets de support avec un backend Spring Boot et un f
 ### 1. Récupérer le projet
 
 ```bash
-git clone https://github.com/MoustaphaFEKOTAN/Ticket-management-TECHNICAL-TEST-IT-NUM.git
+git clone https://github.com/MoustaphaFEKOTAN/Ticket-management-TECHNICAL-TEST-IT-NUM-MOUSTAPHAFEKOTAN.git
 ```
 
-#### Dézipper le fichier et ouvrez le projet dans votre éditeur de code
+#### si compresser, dézipper le fichier et ouvrez le projet dans votre éditeur de code
 
 ### 2. Accédez au Backend du projet
+
+> Dans le terminal de votre éditeur, tapez:
 
 ```bash
 cd back
@@ -30,13 +32,12 @@ cd back
 #### 2.1 Configurer les variables locales
 
 ```bash
-cp src/main/resources/application-local.example.yml \
-   src/main/resources/application-local.yml
+cp src/main/resources/application-local.example.yaml src/main/resources/application-local.yaml
 ```
 
 #### 2.2 Démarrer Mysql et créer la base de données depuis l'interface PhpMyAdmin
 
-Ouvrez `application-local.yml` et configurer la base de données(MySQL) :
+Ouvrez `application-local.yaml` et configurer la base de données(MySQL) :
 
 ```yaml
 datasource:
@@ -54,7 +55,7 @@ openssl rand -hex 32
 
 > Si cette commande ne fonctionne pas vous pouvez utiliser une autre alternative pour générer le 'secret'
 
-Copiez la clé générée et ajoutez la clé générée dans `application-local.yml` :
+Copiez la clé générée et ajoutez la clé générée dans `application-local.yml` au niveau de secret:
 
 ```yaml
 jwt:
@@ -74,20 +75,20 @@ jwt:
 
 ---
 
-### 3. Accédez au Frontend du projet(Ouvrez une nouvelle instance de votre terminal)
+### 3. Accédez au Frontend du projet(Ouvrez un nouveau terminal toujours dans votre éditeur)
 
 ```bash
-cd ../front
+cd front
 npm install
 ```
 
 ### 3.1 Une fois toutes les dépendances installées, Configurer les variables locales
 
 ```bash
-cp .env.example \ .env
+cp .env.example .env
 ```
 
-- Vérifier dans le .env, que l'url du backend renseigné correspond à l'url sur lequel le back s'execute actuellement, si ce n'est pas le cas vous pouvez modfier:
+- Vérifier dans le fichier .env, que l'url du backend renseigné correspond à l'url sur lequel le back s'execute actuellement, si ce n'est pas le cas vous pouvez modfier:
 
 ```bash
 NUXT_PUBLIC_API_BASE=BACKEND_URL
