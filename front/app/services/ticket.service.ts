@@ -10,19 +10,25 @@ export const useTicketService = () => {
     Authorization: `Bearer ${auth.token}`,
   });
 
-  const handleResponse = (res: Response) => {
+  const handleResponse = async (res: Response) => {
     if (res.status === 401) {
       auth.logout();
       navigateTo("/login");
       throw new Error("Session expirée");
     }
-    if (!res.ok) throw new Error("Erreur serveur");
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Erreur serveur");
+    }
+
+    if (res.status === 204) return null;
+
     return res.json();
   };
 
   const getAll = async () => {
     const res = await fetch(`${base}/api/tickets`, { headers: headers() });
-    if (!res.ok) throw new Error("Impossible de récupérer les tickets");
     return handleResponse(res);
   };
 
@@ -30,7 +36,6 @@ export const useTicketService = () => {
     const res = await fetch(`${base}/api/tickets/${id}`, {
       headers: headers(),
     });
-    if (!res.ok) throw new Error("lE Ticket est introuvable");
     return handleResponse(res);
   };
 
@@ -40,10 +45,6 @@ export const useTicketService = () => {
       headers: headers(),
       body: JSON.stringify({ title, description }),
     });
-    if (!res.ok)
-      throw new Error(
-        "Erreur lors de la création du ticket, veuillez réessayer",
-      );
     return handleResponse(res);
   };
 
@@ -53,10 +54,6 @@ export const useTicketService = () => {
       headers: headers(),
       body: JSON.stringify(data),
     });
-    if (!res.ok)
-      throw new Error(
-        "Erreur lors de la mise à jour du ticket, veuillez réessayer",
-      );
     return handleResponse(res);
   };
 
@@ -65,10 +62,7 @@ export const useTicketService = () => {
       method: "DELETE",
       headers: headers(),
     });
-    if (!res.ok)
-      throw new Error(
-        "Erreur lors de la suppression du ticket, veuillez réessayer",
-      );
+    return handleResponse(res);
   };
 
   return { getAll, getById, create, update, remove };
